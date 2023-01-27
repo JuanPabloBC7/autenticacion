@@ -1,0 +1,455 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.master.cs" Inherits="autenticacion.paginas.admin.admin" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+  <!-- ========================================================= -->
+  <!-- * Author:  (0026) - JOSUE DAVID GUERRA GONZALEZ           -->
+  <!-- * Author:  (8104) - JUAN PABLO BALAN CONTRERAS            -->
+  <!-- * Versión: 24.08.2022                                     -->
+  <!-- ========================================================= -->
+  <%--https://prium.github.io/falcon/v3.10.0/index.html--%>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%: Page.Title %> - Aplicaciones</title>
+  <link href="/assets/img/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+  <!-- ================================================ -->
+  <!--    Favicons                                      -->
+  <!-- ================================================ -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico">
+  <%--<link rel="manifest" href="/assets/img/favicons/manifest.json">--%>
+  <meta name="msapplication-TileImage" content="/assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/vendors/overlayscrollbars/OverlayScrollbars.min.js"></script>
+
+  <!-- ================================================ -->
+  <!--    Stylesheets                                   -->
+  <!-- ================================================ -->
+  <link href="/assets/vendors/choices/choices.min.css" rel="stylesheet">
+  <link href="/assets/vendors/prism/prism-okaidia.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+  <link href="/assets/vendors/overlayscrollbars/OverlayScrollbars.min.css" rel="stylesheet">
+  <link href="/assets/css/theme-rtl.min.css" rel="stylesheet" id="style_rtl">
+  <link href="/assets/css/theme.min.css" rel="stylesheet" id="style_default">
+  <link href="/assets/css/user-rtl.min.css" rel="stylesheet" id="user_style_rtl">
+  <link href="/assets/css/user.min.css" rel="stylesheet" id="user_style_default">
+
+  <!-- ================================================ -->
+  <!--    Extra CSS                                     -->
+  <!-- ================================================ -->
+  <!-- * DataTables                                     -->
+  <!-- * https://datatables.net/                        -->
+  <!-- ================================================ -->
+  <link rel="stylesheet" href="/assets/datatable/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/assets/datatable/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/assets/datatable/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- ================================================ -->
+  <!-- * SweetAlert2                                    -->
+  <!-- * https://sweetalert2.github.io/                 -->
+  <!-- ================================================ -->
+  <link rel="stylesheet" href="/assets/sweetalert2/css/bootstrap-4.min.css">
+  <script>
+    var isRTL = JSON.parse(localStorage.getItem('isRTL'));
+    if (isRTL) {
+      var linkDefault = document.getElementById('style_default');
+      var userLinkDefault = document.getElementById('user_style_default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style_rtl');
+      var userLinkRTL = document.getElementById('user_style_rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+
+  <asp:ContentPlaceHolder ID="link" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
+  <form id="form1" runat="server">
+    <!-- ================================================ -->
+    <!--    Main Content                                  -->
+    <!-- ================================================ -->
+    <main class="main" id="top">
+      <div class="container-fluid" data-layout="container">
+        <script>
+          var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+          if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+          }
+        </script>
+
+        <!-- ================================================ -->
+        <!--    SideBar                                       -->
+        <!-- ================================================ -->
+        <nav class="navbar navbar-light navbar-vertical navbar-expand-xl navbar-card">
+          <script>
+            var navbarStyle = localStorage.getItem("navbarStyle");
+            if (navbarStyle && navbarStyle !== 'transparent') {
+              document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
+            }
+          </script>
+          <div class="d-flex align-items-center">
+            <div class="toggle-icon-wrapper">
+              <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+            </div>
+            <a class="navbar-brand" href="#">
+              <div class="d-flex align-items-center py-3">
+                <img class="me-2" src="https://via.placeholder.com/40x40.png" alt="" width="40" /><span class="font-sans-serif">Apps</span>
+              </div>
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+            <div class="navbar-vertical-content scrollbar">
+              <ul id="sidebar-nav" class="navbar-nav flex-column mb-3">
+                <li id="lvl1" class="nav-item">
+                  <!-- parent pages-->
+                  <a id="lvl1T" class="nav-link dropdown-indicator" href="#lvl1C" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="lvl1C">
+                    <div class="d-flex align-items-center">
+                      <span class="nav-link-icon"><span class="fab fa-app-store-ios"></span></span><span class="nav-link-text ps-1">Apps</span>
+                    </div>
+                  </a>
+                  <ul id="lvl1C" class="nav collapse">
+                    <li id="lvl1_1" class="nav-item">
+                      <a id="lvl1_1T" class="nav-link" href="/paginas/admin/sistemas/sistemas.aspx" data-bs-toggle="" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                          <span class="nav-link-text ps-1">Aplicaciones</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="settings mb-3"></div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="content">
+          <!-- ================================================ -->
+          <!--    NavBar                                        -->
+          <!-- ================================================ -->
+          <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand">
+
+            <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+            <a class="navbar-brand me-1 me-sm-3" href="index.html">
+              <div class="d-flex align-items-center">
+                <img class="me-2" src="https://via.placeholder.com/40x40.png" alt="" width="40" /><span class="font-sans-serif">Apps</span>
+              </div>
+            </a>
+            <ul class="navbar-nav align-items-center d-none d-lg-block">
+              <li class="nav-item">
+                <div class="search-box" data-list='{"valueNames":["title"]}'>
+                  <div class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                    <input class="form-control search-input fuzzy-search" type="search" placeholder="Buscar..." aria-label="Buscar" />
+                    <span class="fas fa-search search-box-icon"></span>
+                  </div>
+                  <div class="btn-close-falcon-container position-absolute end-0 top-50 translate-middle shadow-none" data-bs-dismiss="search">
+                    <div class="btn-close-falcon" aria-label="Close"></div>
+                  </div>
+                  <div class="dropdown-menu border font-base start-0 mt-2 py-0 overflow-hidden w-100">
+                    <div class="scrollbar list py-3" style="max-height: 24rem;">
+                      <%--<hr class="text-200 dark__text-900" />--%>
+                      <h6 class="dropdown-header fw-medium text-uppercase px-card fs--2 pt-0 pb-2">Apps</h6>
+                      <a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">CDD - CONTROL DE DOCUMENTOS      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: operador 1</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">FMW — FORMULARIOS WEB      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">INV - SISTEMA DE INVENTARIO      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: inventarios</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SALMI — SISTEMA DE ALMACEN      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: autorizador_toto_la_reforma_fopro</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SAM - SEGURIDAD DE APLICACIONES      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SARH - SISTEMA DE ADMINISTRACIÓN DE RECURSOS HUMANOS      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SICOME - SISTEMA DE COMEDORES (WEB)      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SIPS-BECA ARTESANO      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: digitador_dco</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SIPS-BONO      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">SIPS-PROGRAMA VIDA      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">ST — SISTEMA DE TESORERIA      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: desarrollador</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">UIP - UNIDAD DE INFORMACIÓN PÚBLICA      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: servicios técnicos</span>    </div>
+                        </div>
+                      </a><a class="dropdown-item px-card py-2" onclick="createCookie('idSystem', 'secretkey')" href="#">
+                        <div class="d-flex align-items-center">
+                          <svg class="svg-inline--fa fa-circle fa-w-16 me-2 text-300 fs--2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg><!-- <span class="fas fa-circle me-2 text-300 fs--2"></span> Font Awesome fontawesome.com -->
+                          <div class="fw-normal title mb-0">WEB — PAGINA OFICIAL      <span class="fs--2 mb-0 d-flex text-capitalize">Rol: autor</span>    </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="text-center mt-n3">
+                      <p class="fallback fw-bold fs-1 d-none">Sin resultados...</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+              <li class="nav-item d-none d-sm-block dropdown">
+                <a class="nav-link px-0 fa-icon-wait" id="navbarDropdownConfig" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div data-bs-toggle="tooltip" title="Configuración">
+                    <span class="fas fa fa-cog text-danger" data-fa-transform="shrink-7" style="font-size: 45px;"></span>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0 " aria-labelledby="navbarDropdownConfig">
+                  <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                    <a class="dropdown-item fw-bold text-dark" href="/paginas/auth/change-password.aspx">
+                      <span class="fas fa-key me-1 text-warning"></span>
+                      <span>Cambiar contraseña</span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item d-none d-sm-block">
+                <div class="px-2 d-flex flex-row align-items-center">
+                  <i class="fas fa-user-alt me-1"></i>
+                  <div id="username" runat="server">Nombre de Usuario</div>
+                </div>
+              </li>
+              <li class="nav-item d-none d-sm-block dropdown">
+                <a class="nav-link px-0 fa-icon-wait" id="navbarDropdownInfo" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div data-bs-toggle="tooltip" title="Información del Sistema">
+                    <span class="fas fa-info-circle text-primary" data-fa-transform="shrink-7" style="font-size: 45px;"></span>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0" aria-labelledby="navbarDropdownInfo">
+                  <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                    <a class="dropdown-item fw-bold text-primary" href="#!">
+                      <span class="fas fa-users me-1"></span>
+                      <span>Conectados:</span>
+                      <span id="conectados" runat="server">0</span>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-warning" href="#!">
+                      <span class="fas fa-server me-1"></span>
+                      <span id="servidor" runat="server">Servidor</span>
+                    </a>
+                    <a class="dropdown-item text-dark" href="#!">
+                      <span class="fas fa-file-alt me-1"></span>
+                      <span id="ambiente" runat="server">Ambiente</span>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item fw-bold text-danger" href="#!">
+                      <span class="fas fa-code-branch me-1"></span>
+                      <span>Versión 29.09.2022</span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="theme-control-toggle fa-icon-wait px-2">
+                  <input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme" value="dark" />
+                  <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Claro"><span class="fas fa-sun fs-0"></span></label>
+                  <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Oscuro"><span class="fas fa-moon fs-0"></span></label>
+                </div>
+              </li>
+              <li class="nav-item d-none d-sm-block">
+                <a class="nav-link px-0 fa-icon-wait" href="/paginas/auth/login.aspx" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cerrar Sesión">
+                  <span class="fas fa-power-off text-danger" data-fa-transform="shrink-7" style="font-size: 33px;"></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- ================================================ -->
+          <!--    MainContent                                   -->
+          <!-- ================================================ -->
+          <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+          <asp:ContentPlaceHolder ID="mensaje" runat="server"></asp:ContentPlaceHolder>
+
+          <div id="toast_position" class="position-fixed toast-container p-3">
+            <div id="toast_notifications"></div>
+          </div>
+          <!-- ================================================ -->
+          <!--    Footer                                        -->
+          <!-- ================================================ -->
+          <footer class="footer">
+            <div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
+              <div class="col-12 col-sm-auto text-center">
+                <p class="mb-0 text-600">
+                  jpbalan
+                  <span class="d-none d-sm-inline-block">| </span>
+                  <br class="d-sm-none" />
+                  2022 &copy; 
+                  <a href="#">mi sitio</a>.
+                  Todos los derechos reservados.
+                </p>
+              </div>
+              <div class="col-12 col-sm-auto text-center">
+                <p class="mb-0 text-600">v3.10.0</p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </main>
+
+    <!-- ================================================ -->
+    <!--              JavaScripts - FALCON                -->
+    <!-- ================================================ -->
+    <script src="/assets/vendors/popper/popper.min.js"></script>
+    <script src="/assets/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/vendors/anchorjs/anchor.min.js"></script>
+    <script src="/assets/vendors/is/is.min.js"></script>
+    <script src="/assets/vendors/choices/choices.min.js"></script>
+    <script src="/assets/vendors/prism/prism.js"></script>
+    <script src="/assets/vendors/echarts/echarts.min.js"></script>
+    <script src="/assets/vendors/chart/chart.min.js"></script>
+    <script src="/assets/vendors/dayjs/dayjs.min.js"></script>
+    <script src="/assets/vendors/fontawesome/all.min.js"></script>
+    <script src="/assets/vendors/lodash/lodash.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="/assets/vendors/list.js/list.min.js"></script>
+    <script src="/assets/js/theme.js"></script>
+
+
+    <!-- ================================================ -->
+    <!--    Extra Plugins                                 -->
+    <!-- ================================================ -->
+    <!-- * jQuery                                         -->
+    <!-- * https://jquery.com/                            -->
+    <!-- ================================================ -->
+    <script src="/assets/jquery/jquery.min.js"></script>
+    <!-- ================================================ -->
+    <!-- * DataTables  & Plugins                          -->
+    <!-- * https://datatables.net/                        -->
+    <!-- ================================================ -->
+    <script src="/assets/datatable/datatables/jquery.dataTables.min.js"></script>
+    <script src="/assets/datatable/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/assets/datatable/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/assets/datatable/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/assets/datatable/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/assets/datatable/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/assets/datatable/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/assets/datatable/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/assets/datatable/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- ================================================ -->
+    <!-- * SweetAlert2                                    -->
+    <!-- * https://sweetalert2.github.io/                 -->
+    <!-- ================================================ -->
+    <script src="/assets/sweetalert2/js/sweetalert2.min.js"></script>
+    <!-- ================================================ -->
+    <!-- * InputMask                                      -->
+    <!-- * https://github.com/RobinHerbots/Inputmask      -->
+    <!-- ================================================ -->
+    <script src="/assets/inputmask/jquery.inputmask.min.js"></script>
+
+    <script type="text/javascript">
+      function isExpanded(element) {
+        document.getElementById(element).setAttribute('aria-expanded', 'true')
+      }
+
+      function isShow(element) {
+        document.getElementById(element).setAttribute('class', 'nav collapse show')
+      }
+
+      function isActive(element) {
+        document.getElementById(element).setAttribute('class', 'nav-link active')
+      }
+
+      function openModal(modal) {
+        new bootstrap.Modal($(modal)).show();
+      }
+
+      function showToast(position, title, subtitle, body, headerStyle, bodyStyle) {
+        const rnd = Math.random().toString().substr(2, 4);
+        document.getElementById('toast_position').setAttribute('class', 'position-fixed toast-container p-3 ' + position);
+
+        var newElement = document.createElement("div");
+        var code = "<div id=\"liveToast\" class=\"toast fade show mb-2\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\">" +
+          "  <div class=\"toast-header " + headerStyle + "\">" +
+          "    <strong class=\"me-auto\">" + title + "</strong>" +
+          "    <small>" + subtitle + "</small>" +
+          "    <button class=\"btn-close btn-close-white\" type=\"button\" data-bs-dismiss=\"toast\" aria-label=\"Close\"></button>" +
+          "  </div>" +
+          "  <div class=\"toast-body " + bodyStyle + "\">" + body + "</div>" +
+          "</div>"
+        newElement.innerHTML += code;
+        document.getElementById("toast_notifications").appendChild(newElement);
+      }
+
+      function createCookie(name, json) {
+        const today = new Date()
+
+        console.log("today => ", today)
+        let tomorrow = new Date()
+        tomorrow.setDate(today.getDate() + 5)
+        tomorrow.setHours(0, 0, 0, 0)
+
+        console.log("tomorrow => ", tomorrow)
+
+        document.cookie = name + "=" + json + ";domain=.domain.com;path=/;expires=" + tomorrow;
+      }
+    </script>
+
+    <asp:ContentPlaceHolder ID="script" runat="server"></asp:ContentPlaceHolder>
+  </form>
+</body>
+</html>
