@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="autenticacion.paginas.auth.login" %>
 
 <!DOCTYPE html>
-
 <html lang="es" dir="ltr">
 <head runat="server">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,7 +31,6 @@
   <link href="/assets/css/theme.min.css" rel="stylesheet" id="style_default">
   <link href="/assets/css/user-rtl.min.css" rel="stylesheet" id="user_style_rtl">
   <link href="/assets/css/user.min.css" rel="stylesheet" id="user_style_default">
-
   <!-- ================================================ -->
   <!--    Extra CSS                                     -->
   <!-- ================================================ -->
@@ -40,11 +38,22 @@
   <!-- * https://sweetalert2.github.io/                 -->
   <!-- ================================================ -->
   <link rel="stylesheet" href="/assets/sweetalert2/css/bootstrap-4.min.css">
+  <style>
+    body {
+      background-image: url("/assets/img/mides/fondo1.jpg");
+      backdrop-filter: blur(5px);
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: all 1s ease;
+      margin: 0;
+      height: 100vh;
+    }
+  </style>
   <script>
     var isRTL = JSON.parse(localStorage.getItem('isRTL'));
     if (isRTL) {
       var linkDefault = document.getElementById('style_default');
-      var userLinkDefault = document.getElementById('user_style-default');
+      var userLinkDefault = document.getElementById('user_style_default');
       linkDefault.setAttribute('disabled', true);
       userLinkDefault.setAttribute('disabled', true);
       document.querySelector('html').setAttribute('dir', 'rtl');
@@ -55,20 +64,9 @@
       userLinkRTL.setAttribute('disabled', true);
     }
   </script>
-  <style>
-    body {
-      background-image: url("/assets/img/mides/fondo1.jpg");
-      backdrop-filter: blur(5px);
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: all 1s ease;
-      margin: 0;
-      height: 100vh;
-    }
-  </style>
 </head>
-<body  >
-  <form id="form1" runat="server" >
+<body>
+  <form runat="server">
     <!-- ===============================================-->
     <!--    Main Content-->
     <!-- ===============================================-->
@@ -282,11 +280,6 @@
           document.getElementById(s).removeAttribute("hidden");
           document.getElementById(h).setAttribute("hidden", "hidden");
         }
-
-
-        
-        
-
       }
     </script>
   </form>

@@ -40,6 +40,17 @@
   <!-- * https://sweetalert2.github.io/                 -->
   <!-- ================================================ -->
   <link rel="stylesheet" href="/assets/sweetalert2/css/bootstrap-4.min.css">
+  <style>
+    body {
+      background-image: url("/assets/img/mides/fondo1.jpg");
+      backdrop-filter: blur(5px);
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: all 1s ease;
+      margin: 0;
+      height: 100vh;
+    }
+  </style>
   <script>
     var isRTL = JSON.parse(localStorage.getItem('isRTL'));
     if (isRTL) {
@@ -55,17 +66,6 @@
       userLinkRTL.setAttribute('disabled', true);
     }
   </script>
-   <style>
-    body {
-      background-image: url("/assets/img/mides/fondo1.jpg");
-      backdrop-filter: blur(5px);
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: all 1s ease;
-      margin: 0;
-      height: 100vh;
-    }
-  </style>
 </head>
 <body>
   <form id="form1" runat="server">

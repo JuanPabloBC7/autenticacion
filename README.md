@@ -8,7 +8,7 @@ Existen otros aspectos a considerar, dentro de la página principal se puede det
 * [Autenticacion](#Autenticacion)
 * [Technology](#Technology)
 * [File Structure](#File-Structure)
-* [Browsers Support](Browsers-Support)
+* [Browsers Support](#Browsers-Support)
 * [Demo](#Demo)
   * [Login](#Login)
   * [Reset Password](#Reset-Password)
@@ -25,7 +25,6 @@ Existen otros aspectos a considerar, dentro de la página principal se puede det
 La tecnología utilizada para el proyecto es la siguiente:
 * FRONT END:
   * Template Base: [Falcon Admin v3.10.0](https://themes.getbootstrap.com/product/falcon-admin-dashboard-webapp-template/)
-  <br /> 
   * Free Version: [Falcon Admin v3.4.0](https://www.upload.ee/files/13565097/falcon-3.4.0.zip.html)
   * Pugins Agregados:
     * [JQuery](https://jquery.com/)
@@ -88,7 +87,10 @@ autenticacion/
 
 ## Browsers Support
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari |
+[<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)
+[<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)
+[<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)
+[<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)
 
 ## Demo
 ### Login
