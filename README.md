@@ -1,5 +1,5 @@
 # Autenticacion
-[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/193px-Visual_Studio_Icon_2022.svg.png" alt="IE / Edge" width="24px" height="24px" /> v2022 C# APS.NET](https://visualstudio.microsoft.com/es/vs/)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/193px-Visual_Studio_Icon_2022.svg.png" alt="Visual Studio 2022" width="24px" height="24px" /> v2022 C# APS.NET](https://visualstudio.microsoft.com/es/vs/)
 
 El sistema de autenticación se realiza con el fin de ser un medio de comunicación entre aplicaciones administrativas. El objetivo principal es poder acceder a un solo inicio de sesión y dentro de esta aplicación poder visualizar todos los accesos a las distintas aplicaciones posteriores, es decir, si un usuario posee un solo acceso a un sistema, dentro de autenticación se visualizará una sola aplicación, sin embargo, si el usuario posee muchos accesos estos se detallan dentro de la aplicación.
 
