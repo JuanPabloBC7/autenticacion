@@ -94,9 +94,9 @@
                 <small>Ingrese su contraseña para acceder al sitio nuevamente.</small>
                 <div class="mt-4 row g-0 mx-sm-4">
                   <div class="col">
-                    <input type="hidden" id="systemId" class="form-control me-2 mb-2" placeholder="Sistema" aria-describedby="login" runat="server" />
-                    <input type="hidden" id="username" class="form-control me-2 mb-2" placeholder="Nit" aria-describedby="login" runat="server" />
-                    <input type="password" id="password" class="form-control me-2 mb-2" placeholder="password" aria-describedby="login" runat="server" />
+                    <input type="hidden" id="systemId" class="form-control me-2 mb-2" placeholder="Sistema" aria-describedby="login" runat="server"/>
+                    <input type="hidden" id="username" class="form-control me-2 mb-2" placeholder="Nit" aria-describedby="login" runat="server"/>
+                    <input type="password" id="password" class="form-control me-2 mb-2" placeholder="password" aria-describedby="login" runat="server"/>
                   </div>
                   <div class="col-auto ps-2">
                     <button id="unlock" class="btn btn-primary mx-2" runat="server">unlock</button>
